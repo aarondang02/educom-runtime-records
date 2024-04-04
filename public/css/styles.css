@@ -1,0 +1,93 @@
+/* top bar content*/
+.top-bar{
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.logo{
+    height: 55px;
+    padding-right: 10px;
+    float: left;
+}
+
+.logo-text{
+    height: 40px;
+    float: left;
+}
+
+/* -------------------------------------------------------------- */
+
+/* bottom bar content*/
+.bottom-bar{
+    color: gray;
+    font-weight: bold;
+    background-color: black;
+    padding: 30px;
+}
+
+.bottom-bar a{
+    color: gray;
+    
+}
+
+.bottom-bar a:link{
+    color: gray;
+    text-decoration: none;
+}
+
+.bottom-bar a:hover {
+    text-decoration: underline;
+  }
+
+.bottom-bar ul{
+    list-style-type: none;
+}
+.bottom-bar li{
+    margin-bottom: 10px; 
+}
+
+ul[title]::before {
+    content: attr(title);
+    display: block;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.right-aligned{
+    float: right;
+}
+
+/* -------------------------------------------------------------- */
+
+/* main content */
+.featured-content-background{
+    background-image: url("../images/runtime-records-backdrop.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 700px;
+}
+
+.featured-content{
+    margin: 50px;
+}
+
+.gray-box{ /*for testing purposes */
+    background-color: gray;
+    height: 300px;
+    width: 300px;
+    position: relative; 
+    top: 25%;
+}
+
+.pink-box{ /*for testing purposes */
+    background-color: pink;
+    height: 80%;
+    width: 80%;
+    position: relative;
+    left: 15%;
+    top: 10%;
+}

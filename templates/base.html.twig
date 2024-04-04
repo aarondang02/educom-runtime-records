@@ -4,14 +4,58 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="stylesheet" href="{{asset("css/styles.css")}}"/>
         {% block stylesheets %}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% block importmap %}{{ importmap("app") }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="default-font">
+        <div class="containter">
+            <div class="row">
+                <div class="col-12 top-bar">
+                    <div class="row">
+                        <div class="col-9">
+                            <a href="{{ path("app_homepage") }}">
+                                <img class = "logo" src="{{ asset("images/disc-payoff.svg") }}" alt="Logo Image"/>
+                                <img class = "logo-text" src="{{ asset("images/runtime-records-logo.svg") }}" alt="Logo Image">
+                            </a>
+                        </div>
+                        <div class="col-3"></div>
+
+                        </div>
+                    
+                </div>
+            </div>
+
+            <div>
+                {% block body %}{% endblock %}
+            </div>    
+
+            <div class="row bottom-bar">
+                <div class="col-3">
+                    <ul title="Runtime Records">
+                        <li><a href="info@runtime-records.com">info@runtime-records.com</a></li>
+                        <li><a href="discogs.com/runtime-records">discogs.com/runtime-records</a></li>
+                        <li><a href="facebook.com/runtime-records">facebook.com/runtime-records</a></li>
+                        <li><a href="@RuntimeRecords">@RuntimeRecords</a></li>
+                        <li><a href="@RuntimeRecords">@RuntimeRecords</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul title="Info">
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="col-5">
+                    <img class = "right-aligned" src="{{ asset("images/disc-payoff-white.svg") }}" alt="Logo Image"/>
+                    <img class = "right-aligned" src="{{ asset("images/record-store-day.svg") }}" alt="Logo Text">
+                </div>
+            </div>
+        </div>
     </body>
 </html>
