@@ -1,3 +1,8 @@
+html, body{
+    overflow-x: hidden;
+    
+}
+
 /* top bar content*/
 .top-bar{
     height: 50px;
