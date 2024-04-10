@@ -10,6 +10,29 @@ html, body{
     margin-bottom: 20px;
 }
 
+
+
+.login-text{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.login-text a{
+    color: black;
+    padding: 5px;
+}
+
+.login-text a:link{
+    color: black;
+    text-decoration: none;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+  }
+
 .logo{
     height: 55px;
     padding-right: 10px;
@@ -65,34 +88,7 @@ ul[title]::before {
     float: right;
 }
 
+
+
 /* -------------------------------------------------------------- */
 
-/* main content */
-.featured-content-background{
-    background-image: url("../images/runtime-records-backdrop.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 700px;
-}
-
-.featured-content{
-    margin: 50px;
-}
-
-.gray-box{ /*for testing purposes */
-    background-color: gray;
-    height: 300px;
-    width: 300px;
-    position: relative; 
-    top: 25%;
-}
-
-.pink-box{ /*for testing purposes */
-    background-color: pink;
-    height: 80%;
-    width: 80%;
-    position: relative;
-    left: 15%;
-    top: 10%;
-}
