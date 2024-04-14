@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Hello HomepageController!
+
 
 {% endblock %}
 
-{% block stylesheet %}
+{% block stylesheets %}
 <link rel="stylesheet" href="{{asset("css/main.css")}}"/>
 {% endblock %}
 
@@ -37,13 +37,11 @@ Hello HomepageController!
     <div class="col-3"></div>
 </div>
 
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-2 gray-box record-listing"></div>
-    <div class="col-2 gray-box record-listing"></div>
-    <div class="col-2 gray-box record-listing"></div>
-    <div class="col-2 gray-box record-listing"></div>
-    <div class="col-2"></div>
+<div class="row align-items-center">
+    <div class="col-3 gray-square record-listing"></div>
+    <div class="col-3 gray-square record-listing"></div>
+    <div class="col-3 gray-square record-listing"></div>
+    <div class="col-3 gray-square record-listing"></div>
 </div>
 
 {% endblock %}

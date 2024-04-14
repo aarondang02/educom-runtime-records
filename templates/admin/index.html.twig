@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Gebruiker/educom-runtime-records/src/Controller/AdminController.php</code></li>
-        <li>Your template at <code>C:/Users/Gebruiker/educom-runtime-records/templates/admin/index.html.twig</code></li>
-    </ul>
+<div class="row">
+    <h1>Artists</h1>
+    <div class="col-12">
+        <a href="{{ path("app_artist_index") }}">
+            <button type="button" class="btn btn-primary"> go to artist</button>
+        </a>
+    </div>
 </div>
+
+<div class="row">
+    <h1>Records</h1>
+    <div class="col-12">
+        <a href="{{ path("app_record_index") }}">
+            <button type="button" class="btn btn-primary"> go to record</button>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <h1>Genres</h1>
+    <div class="col-12">
+        <a href="{{ path("app_genre_index") }}">
+            <button type="button" class="btn btn-primary"> go to genre</button>
+        </a>
+    </div>
+</div>
+
+
 {% endblock %}

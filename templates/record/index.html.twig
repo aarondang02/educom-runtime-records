@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Record index{% endblock %}
+
+{% block body %}
+    <h1>Record index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Release_date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image_url</th>
+                <th>Available_stock</th>
+                <th>Reserved_stock</th>
+                <th>Sold</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in records %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.releaseDate ? record.releaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ record.description }}</td>
+                <td>{{ record.price }}</td>
+                <td>{{ record.imageUrl }}</td>
+                <td>{{ record.availableStock }}</td>
+                <td>{{ record.reservedStock }}</td>
+                <td>{{ record.sold }}</td>
+                <td>
+                    <a href="{{ path('app_record_show', {'id': record.id}) }}">show</a>
+                    <a href="{{ path('app_record_edit', {'id': record.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_record_new') }}">Create new</a>
+{% endblock %}

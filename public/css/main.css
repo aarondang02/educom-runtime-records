@@ -7,9 +7,6 @@
     height: 700px;
 }
 
-.record-listing{
-    margin: 30px;
-}
 
 .featured-content{
     margin: 50px;
@@ -21,6 +18,12 @@
     width: 300px;
     position: relative; 
     top: 25%;
+}
+
+.gray-square{ /*for testing purposes */
+    background-color: gray;
+    height: 300px;
+    width: 300px;
 }
 
 .pink-box{ /*for testing purposes */

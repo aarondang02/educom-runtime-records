@@ -1,15 +1,9 @@
-html, body{
-    overflow-x: hidden;
-    
-}
-
 /* top bar content*/
 .top-bar{
     height: 50px;
     padding: 10px;
     margin-bottom: 20px;
 }
-
 
 
 .login-text{

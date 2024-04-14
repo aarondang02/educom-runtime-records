@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Record{% endblock %}
+
+{% block body %}
+    <h1>Record</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ record.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ record.name }}</td>
+            </tr>
+            <tr>
+                <th>Release_date</th>
+                <td>{{ record.releaseDate ? record.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ record.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ record.price }}</td>
+            </tr>
+            <tr>
+                <th>Image_url</th>
+                <td>{{ record.imageUrl }}</td>
+            </tr>
+            <tr>
+                <th>Available_stock</th>
+                <td>{{ record.availableStock }}</td>
+            </tr>
+            <tr>
+                <th>Reserved_stock</th>
+                <td>{{ record.reservedStock }}</td>
+            </tr>
+            <tr>
+                <th>Sold</th>
+                <td>{{ record.sold }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_record_index') }}">back to list</a>
+
+    <a href="{{ path('app_record_edit', {'id': record.id}) }}">edit</a>
+
+    {{ include('record/_delete_form.html.twig') }}
+{% endblock %}

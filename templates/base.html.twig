@@ -13,7 +13,7 @@
         {% endblock %}
     </head>
     <body class="default-font">
-        <div class="containter">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 top-bar">
                     <div class="row">
@@ -41,9 +41,9 @@
                 </div>
             </div>
 
-            <div>
-                {% block body %}{% endblock %}
-            </div>    
+            {% block body %}
+            {% endblock %}
+             
 
             <div class="row bottom-bar">
                 <div class="col-3">

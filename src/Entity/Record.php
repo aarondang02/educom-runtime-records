@@ -22,13 +22,13 @@ class Record
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $release_date = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
     private ?int $price = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_url = null;
 
     #[ORM\Column]
