@@ -35,3 +35,50 @@
     top: 10%;
 }
 
+
+.record-image{
+}
+
+.center-image-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.record-genres{
+    text-align: right;
+    font-weight: bold;
+}
+
+.record-genres a{
+    text-decoration: none;
+    color: #E84E0F;
+}
+
+.record-genres a:hover {
+    filter: saturate(0.5);
+}
+
+.search-bar-margin{
+    margin: 10px;
+}
+
+.record-grid-container{
+    display: grid;
+    justify-content: space-evenly;
+    padding: 20px;
+    gap: 10px 10px;
+
+}
+
+.record-grid-template{
+    grid-template-columns: auto auto auto auto
+}
+
+.record-grid-item{
+    width: 20vw;
+}
+

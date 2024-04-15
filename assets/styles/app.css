@@ -24,6 +24,18 @@
     font-weight: bold;
 }
 
+.default-orange{
+    color: #E84E0F;
+}
+
+.default-black{
+    color: black;
+}
+
+.default-white{
+    color: white;
+}
+
 body {
     font-family:'Rouna', sans-serif;
     background-color: #fff;

@@ -82,7 +82,16 @@ ul[title]::before {
     float: right;
 }
 
+.flex{
+    display: flex;
+}
+.bottom-bar-logo{
+    justify-content: end;
+}
 
+.vertical-center{
+    align-items: center;
+}
 
 /* -------------------------------------------------------------- */
 

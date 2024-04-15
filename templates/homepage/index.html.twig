@@ -32,16 +32,77 @@
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-        searchbar
+        <div class="search-bar-margin">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        
     </div>
     <div class="col-3"></div>
 </div>
 
-<div class="row align-items-center">
-    <div class="col-3 gray-square record-listing"></div>
-    <div class="col-3 gray-square record-listing"></div>
-    <div class="col-3 gray-square record-listing"></div>
-    <div class="col-3 gray-square record-listing"></div>
+<div class="row">
+    <div class="col-12">
+        <div class="record-grid-container record-grid-template">
+
+            <div class="record-grid-item">
+                <div class="center-image-flex flex-column">
+                    <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                    <div class="record-genres">
+                        <a href="">
+                            rock, pop
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="record-grid-item">
+                <div class="center-image-flex flex-column">
+                    <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                    <div class="record-genres">
+                        <a href="">
+                            rock, pop
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="record-grid-item">
+                <div class="center-image-flex flex-column">
+                    <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                    <div class="record-genres">
+                        <a href="">
+                            rock, pop
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="record-grid-item">
+                <div class="center-image-flex flex-column">
+                    <img class="record-image-size" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                    <div class="record-genres">
+                        <a href="">
+                            rock, pop
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="record-grid-item">
+                <div class="center-image-flex flex-column">
+                    <img class="record-image-size" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                    <div class="record-genres">
+                        <a href="">
+                            rock, pop
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
