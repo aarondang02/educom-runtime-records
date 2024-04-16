@@ -19,7 +19,6 @@ class GenreType extends AbstractType
                 'class' => Record::class,
                 'choice_label' => 'id',
                 'multiple' => true,
-                'required' => false,
             ])
         ;
     }

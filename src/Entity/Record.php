@@ -41,7 +41,7 @@ class Record
     private ?int $sold = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'records')]
-    private Collection $genre;
+    private Collection $genres;
 
     #[ORM\ManyToMany(targetEntity: Artist::class, inversedBy: 'records')]
     private Collection $artists;
@@ -54,7 +54,7 @@ class Record
 
     public function __construct()
     {
-        $this->genre = new ArrayCollection();
+        $this->genres = new ArrayCollection();
         $this->artists = new ArrayCollection();
         $this->cartItems = new ArrayCollection();
         $this->orderItems = new ArrayCollection();
@@ -166,13 +166,13 @@ class Record
      */
     public function getGenre(): Collection
     {
-        return $this->genre;
+        return $this->genres;
     }
 
     public function addGenre(Genre $genre): static
     {
-        if (!$this->genre->contains($genre)) {
-            $this->genre->add($genre);
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
         }
 
         return $this;
@@ -180,7 +180,7 @@ class Record
 
     public function removeGenre(Genre $genre): static
     {
-        $this->genre->removeElement($genre);
+        $this->genres->removeElement($genre);
 
         return $this;
     }

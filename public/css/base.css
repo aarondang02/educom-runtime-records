@@ -1,3 +1,4 @@
+
 /* top bar content*/
 .top-bar{
     height: 50px;
@@ -9,8 +10,6 @@
 .login-text{
     color: black;
     font-size: 30px;
-    font-weight: bold;
-    
 }
 
 .login-text a{
@@ -43,13 +42,12 @@
 /* bottom bar content*/
 .bottom-bar{
     color: gray;
-    font-weight: bold;
     background-color: black;
     padding: 30px;
 }
 
 .bottom-bar a{
-    color: gray;
+    color: #808080;
     
 }
 
@@ -78,20 +76,42 @@ ul[title]::before {
     margin-bottom: 20px;
 }
 
-.right-aligned{
-    float: right;
+.bottom-bar-icon {
+    height: 1.5em;
+    width: 1.5em;
 }
+
+.bottom-bar-logo{
+    justify-content: end;
+}
+
+
+
+/* -------------------------------------------------------------- */
+
+/* site wide css */
 
 .flex{
     display: flex;
-}
-.bottom-bar-logo{
-    justify-content: end;
 }
 
 .vertical-center{
     align-items: center;
 }
 
-/* -------------------------------------------------------------- */
+.right-aligned{
+    float: right;
+}
 
+.center-image-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.bold-text{
+    font-weight: bold;
+}

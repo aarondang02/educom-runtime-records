@@ -19,9 +19,9 @@ class RecordType extends AbstractType
             ->add('release_date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('description', null, ['required' => false])
+            ->add('description')
             ->add('price')
-            ->add('image_url', null, ['required' => false])
+            ->add('image_url')
             ->add('available_stock')
             ->add('reserved_stock')
             ->add('sold')
@@ -29,13 +29,11 @@ class RecordType extends AbstractType
                 'class' => Genre::class,
                 'choice_label' => 'id',
                 'multiple' => true,
-                'required' => null
             ])
             ->add('artists', EntityType::class, [
                 'class' => Artist::class,
                 'choice_label' => 'id',
                 'multiple' => true,
-                'required' => null
             ])
         ;
     }

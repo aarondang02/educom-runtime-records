@@ -1,0 +1,8 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #E84E0F !important;
+    border: #E84E0F !important;
+}
+
+.btn-primary:hover{
+    filter: saturate(0.6);
+}

@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Artist;
 use App\Entity\Record;
-use Doctrine\DBAL\Types\StringType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,12 +16,11 @@ class ArtistType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('image_url',  null ,['required' => false])
+            ->add('image_url')
             ->add('records', EntityType::class, [
                 'class' => Record::class,
                 'choice_label' => 'id',
                 'multiple' => true,
-                'required' => false
             ])
         ;
     }

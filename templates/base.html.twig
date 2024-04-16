@@ -12,7 +12,8 @@
             {% block importmap %}{{ importmap("app") }}{% endblock %}
         {% endblock %}
     </head>
-    <body class="default-font">
+
+    <header class="default-font">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 top-bar">
@@ -25,7 +26,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-6 login-text d-flex align-items-center">
+                        <div class="col-6 login-text bold-text d-flex align-items-center">
                             {% if app.user %}
                                 {% if "ROLE_ADMIN" in app.user.getRoles() %}
                                     <a href="{{ path("app_admin") }}">Admin Panel</a>
@@ -34,25 +35,50 @@
                             {% else %}
                                 <a href="{{ path("app_login") }}">Log In</a>
                                 <a href="{{ path("app_register") }}">Register</a>
-                            {% endif %}
-                            
+                            {% endif %} 
                         </div>     
                     </div>
                 </div>
             </div>
-
+        </div>
+    </header>
+    
+    <body class="default-font d-flex flex-column min-vh-100">
+        <div class="container-fluid">
             {% block body %}
             {% endblock %}
-             
-
-            <div class="row bottom-bar">
+        </div>
+    </body>
+    <footer class="default-font mt-auto">
+        <div class="container-fluid">
+            <div class="row bottom-bar bold-text">
                 <div class="col-3">
                     <ul title="Runtime Records">
-                        <li><a href="info@runtime-records.com">info@runtime-records.com</a></li>
-                        <li><a href="discogs.com/runtime-records">discogs.com/runtime-records</a></li>
-                        <li><a href="facebook.com/runtime-records">facebook.com/runtime-records</a></li>
-                        <li><a href="@RuntimeRecords">@RuntimeRecords</a></li>
-                        <li><a href="@RuntimeRecords">@RuntimeRecords</a></li>
+                        <li>
+                            <a href="">
+                                <img class="bottom-bar-icon" src="{{asset("images/mail.svg")}}"/> info@runtime-records.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img class="bottom-bar-icon" src="{{asset("images/discogs.svg")}}"/> discogs.com/runtime-records
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""> 
+                                <img class="bottom-bar-icon" src="{{asset("images/facebook.svg")}}"/> facebook.com/runtime-records
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img class="bottom-bar-icon" src="{{asset("images/twitterx.svg")}}"/> @RuntimeRecords
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""> 
+                                <img class="bottom-bar-icon" src="{{asset("images/instagram.svg")}}"/> @RuntimeRecords
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-4">
@@ -68,5 +94,5 @@
                 </div>
             </div>
         </div>
-    </body>
+    </footer>
 </html>
