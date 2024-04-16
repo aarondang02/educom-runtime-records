@@ -36,7 +36,15 @@
     color: white;
 }
 
+html{
+    height: 100%;
+    scrollbar-width: none;
+}
+
 body {
     font-family:'Rouna', sans-serif;
     background-color: #fff;
+    min-height: 100%;
+
 }
+
