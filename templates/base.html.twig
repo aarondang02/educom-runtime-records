@@ -18,11 +18,11 @@
             <div class="row">
                 <div class="col-12 top-bar">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <a href="{{ path("app_homepage") }}">
                                 <div class="d-flex align-items-center">
-                                    <img class = "logo" src="{{ asset("images/disc-payoff.svg") }}" alt="Logo Image"/>
-                                    <img class = "logo-text" src="{{ asset("images/runtime-records-logo.svg") }}" alt="Logo Image"/>
+                                    <img class = "top-bar-logo" src="{{ asset("images/disc-payoff.svg") }}" alt="Logo Image"/>
+                                    <img class = "top-bar-logo-text" src="{{ asset("images/runtime-records-logo.svg") }}" alt="Logo Image"/>
                                 </div>
                             </a>
                         </div>
@@ -36,6 +36,36 @@
                                 <a href="{{ path("app_login") }}">Log In</a>
                                 <a href="{{ path("app_register") }}">Register</a>
                             {% endif %} 
+                        </div>
+
+                        <div class="col-2 pe-5">
+                            
+                            <div class="grid-2">
+                                {% if app.user %}
+                                    <div class="top-bar-cart">
+                                        <a href="{{path("app_checkout")}}">
+                                            <img class="right-aligned" src="{{ asset("images/shopping-cart.svg") }}"/>
+                                        </a>
+                                    </div>
+                                    
+                                {% endif %}
+                                <div class="top-bar-menu">  
+                                    <div class="top-bar--menu-trigger">
+                                        <img class="" src="{{ asset("images/menu.svg") }}"/>
+                                        {# <div class="dropdown">
+                                            
+                                        </div> #}
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                           
+                            
+                                
+
+                            <a href=""> 
+                                <img />
+                            </a>
                         </div>     
                     </div>
                 </div>
