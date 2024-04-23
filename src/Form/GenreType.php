@@ -17,8 +17,10 @@ class GenreType extends AbstractType
             ->add('description')
             ->add('records', EntityType::class, [
                 'class' => Record::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                'choice_value' =>'id',   
                 'multiple' => true,
+                'required' => false,
             ])
         ;
     }

@@ -1,7 +1,38 @@
 .price {
+    height: 100px;
+    width: 100px;
+    background-color: #E84E0F;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.total-price {
     height: 120px;
     width: 120px;
     background-color: #E84E0F;
     border-radius: 50%;
     font-size: 35px;
+}
+
+.checkout-image {
+    width: 100%;
+    object-fit: contain;
+}
+
+.checkout-title {
+    color: #E84E0F;
+    font-size: 50px;
+}
+
+.checkout-author{
+    color: rgba(134, 131, 131, 0.83);
+}
+
+.remove-from-cart-icon{
+    height: 50px;
+    width: 50px;
+}
+
+.total {
+    font-size: 60px;
 }

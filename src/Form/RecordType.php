@@ -27,13 +27,15 @@ class RecordType extends AbstractType
             ->add('sold')
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'description',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('artists', EntityType::class, [
                 'class' => Artist::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false,
             ])
         ;
     }

@@ -19,7 +19,7 @@ class ArtistType extends AbstractType
             ->add('image_url')
             ->add('records', EntityType::class, [
                 'class' => Record::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
             ])
         ;
