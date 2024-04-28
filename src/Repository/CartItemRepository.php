@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\CartItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @extends ServiceEntityRepository<CartItem>
@@ -16,9 +17,41 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CartItemRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $entityManager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, CartItem::class);
+        $this->entityManager = $entityManager;
+    }
+    
+    public function saveCartItem($params)
+    {
+        if(isset($params["id"]) && $params["id"] != "")
+        {
+            $cartItem = $this->find($params["id"]);
+        }
+        else 
+        {
+            $cartItem = new CartItem();
+        }
+
+        $cartItem->setAmount($params["amount"]);
+        $cartItem->setRecord($params["record"]);
+        $cartItem->setUser($params["user"]);
+        
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($cartItem);
+        $entityManager->flush();
+        
+        return $cartItem;
+    }
+
+    public function removeCartItem(CartItem $cartItem)
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($cartItem);
+        $entityManager->flush();
     }
 
 //    /**

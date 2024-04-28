@@ -1,42 +1,36 @@
 /* main content */
 .featured-content-background{
-    background-image: url("../images/runtime-records-backdrop.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.315),rgba(0, 0, 0, 0.384)) , url("../images/runtime-records-backdrop.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 700px;
 }
 
+.featured-artist{
+    color: rgba(134, 134, 134, 0.788);
+}
+
+.featured-title{
+    font-size: 60px;
+}
 
 .featured-content{
     margin: 50px;
 }
 
-.gray-box{ /*for testing purposes */
-    background-color: gray;
-    height: 300px;
-    width: 300px;
-    position: relative; 
-    top: 25%;
+.featured-description{
+    font-size: 22px;
 }
 
-.gray-square{ /*for testing purposes */
-    background-color: gray;
-    height: 300px;
-    width: 300px;
+.featured-add-shopping-cart{
+    width: 50px;
+    height: 50px;
 }
 
-.pink-box{ /*for testing purposes */
-    background-color: pink;
-    height: 80%;
-    width: 80%;
-    position: relative;
-    left: 15%;
-    top: 10%;
-}
-
-
-.record-image{
+.featured-image{
+    height: 400px;
+    width: 400px;
 }
 
 .center-image-flex{

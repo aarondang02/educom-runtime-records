@@ -21,6 +21,7 @@ class ArtistType extends AbstractType
                 'class' => Record::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false,
             ])
         ;
     }
