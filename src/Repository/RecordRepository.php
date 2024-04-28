@@ -35,19 +35,4 @@ class RecordRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
-
-    public function getRecord($id): ?Record
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
-    public function getAllRecords()
-    {
-        return $this->findAll();
-    }
 }

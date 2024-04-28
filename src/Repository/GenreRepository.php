@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\EntityManagerInterface;
 /**
  * @extends ServiceEntityRepository<Genre>
  *
