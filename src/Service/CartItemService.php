@@ -20,7 +20,10 @@ class CartItemService{
     /** @var UserRepository $userRepository */    
     private $userRepository;
 
+    private $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager) {
+        $this->entityManager = $entityManager;
         $this->cartItemRepository = $entityManager->getRepository(CartItem::class);
         $this->recordRepository = $entityManager->getRepository(Record::class);
         $this->userRepository = $entityManager->getRepository(User::class);
@@ -32,7 +35,7 @@ class CartItemService{
 
         if ($user == null)
         {
-            return null;
+            return null; #make this return an error later
         }
 
         else
@@ -42,7 +45,7 @@ class CartItemService{
         
     }
 
-    public function toCart($amount, $recordId)
+    public function addToCart($amount, $recordId)
     {   
 
         $params = [
@@ -54,18 +57,14 @@ class CartItemService{
         return $this->cartItemRepository->saveCartItem($params);
     }
 
-    public function removeCartItem($cartItemId, EntityManagerInterface $entityManager)
+    public function removeCartItem(CartItem $item)
     {
         
         $user = $this->userRepository->getCurrentUser();
-        if ($user == null){
-            return null; #maybe change this later
-        }
 
-        $cartItem = $this->cartItemRepository->find($cartItemId);
-
-        if ($cartItem->getUser() == $user){ #check if user is correct and remove
-            return $this->cartItemRepository->removeCartItem($cartItem);
+        if ($item->getUser() == $user) #check if user is correct and remove
+        {   
+            return $this->cartItemRepository->removeCartItem($item);
         }
         else
         {
@@ -73,28 +72,24 @@ class CartItemService{
         }
     }
 
-    public function getCartItems(EntityManagerInterface $entityManager)
+    public function getCartItems()
     {
-        $user = $entityManager->getRepository(User::class)->getCurrentUser();
-        if ($user == null){
-            return null;
-        }
-        $cartItems = $entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
+        $user = $this->entityManager->getRepository(User::class)->getCurrentUser();
+        $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
         return $cartItems;
     }
 
-    public function removeAllCartItem(EntityManagerInterface $entityManager)
+    public function removeAllCartItems()
     {
-        $user = $entityManager->getRepository(User::class)->getCurrentUser();
-        if ($user == null){
-            return null; #maybe change this later
-        }
-        $cartItems = $entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
+        $user = $this->entityManager->getRepository(User::class)->getCurrentUser();
+
+        $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
         foreach ($cartItems as $cartItem)
         {
-            $entityManager->remove($cartItem);
+            $this->cartItemRepository->removeCartItem($cartItem);
         }
-        $entityManager->flush();
+
+        $this->entityManager->flush();
         return $cartItems;
     }
 

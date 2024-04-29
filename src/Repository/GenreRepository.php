@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
+
 /**
  * @extends ServiceEntityRepository<Genre>
  *
@@ -36,7 +36,7 @@ class GenreRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Genre
+// public function findOneBySomeField($value): ?Genre
 //    {
 //        return $this->createQueryBuilder('g')
 //            ->andWhere('g.exampleField = :val')

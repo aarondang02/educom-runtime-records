@@ -8,9 +8,9 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-3"></div>
+        <div class="col-2"></div>
 
-        <div class="col-6 pt-3">
+        <div class="col-8 pt-3">
             <div class="row pb-3">
                 <div class="col-12">
                     <h1 class="display-1 bold-text">Shopping cart</h1>
@@ -18,52 +18,61 @@
             </div>
 
             {# ---------- #}
-            <div class="row pb-3 border-bottom border-dark border-3">
+            {% set totalPrice = 0 %}
+            {% for cartItem in CartItems %}
+            <div class="row pb-3 mb-3 border-bottom border-dark border-3">
 
                 <div class="col-3 d-flex align-items-center justify-content-center">
                     <img class="checkout-image" src="{{ asset('record-images/beetles-abbey-road.webp') }}">
                 </div>
 
-                <div class="col-6 d-flex justify-content-center flex-column">
+                <div class="col-5 d-flex justify-content-center flex-column">
         
                     <div class="row">
                         <div class="col-12">
                             <a href="">
-                                <h1 class="bold-text checkout-title">Title</h1>
+                                <h1 class="bold-text checkout-title">{{ cartItem.record.name }}</h1>
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <a href="">
-                                <h3 class="bold-text checkout-author">Author</h3>
-                            </a>
+                            {% for artist in cartItem.record.artists %}
+                            <a class="bold-text checkout-author" href="">{{ artist.name }}</a>
+                            {% endfor %}
                         </div>
                     </div>   
                 </div>
 
+                <div class="col-1 d-flex justify-content-center align-items-center">
+                    <div class="bold-text  d-flex justify-content-center align-items-center">
+                        {{ cartItem.amount }} pc(s)
+                    </div>
+                </div>
+
                 <div class="col-2 d-flex justify-content-center align-items-center">
                     <div class="default-white bold-text price float-end d-flex justify-content-center align-items-center">
-                        99.99
+                        {{ cartItem.amount * cartItem.record.price / 100}}
+                        {% set totalPrice = totalPrice + (cartItem.amount * cartItem.record.price / 100) %}
                     </div>
                 </div>
 
                 <div class="col-1 d-flex justify-content-center align-items-center">
-                    <a href="">
-                        <img class="remove-from-cart-icon" src="{{ asset('images/remove-from-cart.svg') }}">
-                    </a>
+                    <form action="{{ path("app_remove_item", { "id": cartItem.id })}}" method="post">
+                        <input type="image" class="remove-from-cart-icon" src="{{ asset('images/remove-from-cart.svg') }}">
+                    </form>
                 </div>
             </div>
-
+            {% endfor %}
             {# ---------- #}
-
+            
             <div class="row pt-5">
                 <div class="col-9 d-flex align-items-center">
                     <h1 class="bold-text total">Total</h1>
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center">
                     <div class="default-white bold-text total-price float-end d-flex justify-content-center align-items-center">
-                        99.99
+                        {{totalPrice}}
                     </div>
                 </div>
                 <div class="col-1"></div>
@@ -80,6 +89,6 @@
             </div>
         </div>
 
-        <div class="col-3"></div>
+        <div class="col-2"></div>
     </div>
 {% endblock %}

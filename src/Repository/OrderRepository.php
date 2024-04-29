@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -16,9 +17,41 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $entityManager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Order::class);
+        $this->entityManager = $entityManager;
+    }
+
+    private function generateOrderNumber()
+    {
+        $lastOrder = $this->entityManager->getRepository(Order::class)->findOneBy([], ['id' => 'DESC']);
+        if ($lastOrder) 
+        {
+            $lastOrderNumber = $lastOrder->getOrderNumber();
+            $lastOrderNumber = substr($lastOrderNumber, 3);
+            $lastOrderNumber = (int) $lastOrderNumber;
+            $lastOrderNumber++;
+        } 
+        else 
+        {
+            $lastOrderNumber = 1;
+        }
+        $orderNumber = 'ORD'. str_pad($lastOrderNumber, 13, '0', STR_PAD_LEFT);
+        return $orderNumber;
+    }
+
+    public function saveOrder($params)
+    {
+        $order = new Order();
+        $order->setUser($params['user']);
+        $order->setStatus($params['status']);
+        $order->setOrderNumber($this->generateOrderNumber());
+        $this->entityManager->persist($order);
+        $this->entityManager->flush();
+        return $order;
     }
 
     //    /**

@@ -140,11 +140,6 @@ ul[title]::before {
     float: right;
 }
 
-.center-image-flex{
-    display: flex;
-    justify-content: center;
-}
-
 .flex-column{
     flex-direction: column;
 }

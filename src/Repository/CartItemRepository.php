@@ -40,18 +40,17 @@ class CartItemRepository extends ServiceEntityRepository
         $cartItem->setRecord($params["record"]);
         $cartItem->setUser($params["user"]);
         
-        $entityManager = $this->getEntityManager();
-        $entityManager->persist($cartItem);
-        $entityManager->flush();
+
+        $this->entityManager->persist($cartItem);
+        $this->entityManager->flush();
         
         return $cartItem;
     }
 
     public function removeCartItem(CartItem $cartItem)
     {
-        $entityManager = $this->getEntityManager();
-        $entityManager->remove($cartItem);
-        $entityManager->flush();
+        $this->entityManager->remove($cartItem);
+        $this->entityManager->flush();
     }
 
 //    /**

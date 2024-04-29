@@ -7,19 +7,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Record;
 use App\Entity\User;
+use App\Entity\CartItem;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\RecordRepository;
+use App\Repository\CartItemRepository;
+use App\Service\CartItemService;
 use Doctrine\ORM\EntityManagerInterface;
+
 
 class TestController extends AbstractController
 {
-    #[Route('/test', name: 'app_test')]
-    public function index(EntityManagerInterface $entityManager): Response
+    private $cartItemService;
+
+    public function __construct(CartItemService $cartItemService)
     {
-        $rep = $entityManager->getRepository(User::class);
-        $data = $rep->getCurrentUser();
-        dump($data);
-        die();
+        $this->cartItemService = $cartItemService;
+    }
+    #[Route('/test', name: 'app_test')]
+    public function index(): Response
+    {
+        $data = $this->cartItemService->getCartItems();
+        dd($data);
     }
 }
