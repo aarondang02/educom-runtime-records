@@ -49,18 +49,7 @@ class OrderService{
 
     private function fetchCurrentUser()
     {   
-        $user = $this->userRepository->getCurrentUser();
-
-        if ($user == null)
-        {
-            return null; #make this return an error later
-        }
-
-        else
-        {
-            return $user;
-        }
-        
+        return $this->userRepository->getCurrentUser();
     }
 
     public function createOrder($params) 
@@ -76,5 +65,13 @@ class OrderService{
         {
             throw new \Exception("Somebody changed status description! Who did it!");
         }
+
+        $data = [
+            'user' => $this->fetchCurrentUser(),
+            'status' => $status,
+        ];
+
+        $order = $this->orderRepository->createOrder($data);
     }
+
 }

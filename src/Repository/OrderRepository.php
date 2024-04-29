@@ -43,7 +43,7 @@ class OrderRepository extends ServiceEntityRepository
         return $orderNumber;
     }
 
-    public function saveOrder($params)
+    public function createOrder($params)
     {
         $order = new Order();
         $order->setUser($params['user']);

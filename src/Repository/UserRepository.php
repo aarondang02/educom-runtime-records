@@ -42,8 +42,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function getCurrentUser(): ?User
     { 
-        #returns null if no user is not authenticated
-        return $this->security->getUser();
+        $user = $this->security->getUser();
+
+        if ($user == null)
+        {
+            throw new \Exception("User is not logged in");
+        }
+        
+        return $user;
     }
     
     

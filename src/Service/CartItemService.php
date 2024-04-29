@@ -31,18 +31,7 @@ class CartItemService{
 
     private function fetchCurrentUser()
     {   
-        $user = $this->userRepository->getCurrentUser();
-
-        if ($user == null)
-        {
-            return null; #make this return an error later
-        }
-
-        else
-        {
-            return $user;
-        }
-        
+        return $this->userRepository->getCurrentUser();
     }
 
     public function addToCart($amount, $recordId)
@@ -60,7 +49,7 @@ class CartItemService{
     public function removeCartItem(CartItem $item)
     {
         
-        $user = $this->userRepository->getCurrentUser();
+        $user = $this->fetchCurrentUser();
 
         if ($item->getUser() == $user) #check if user is correct and remove
         {   
@@ -74,22 +63,20 @@ class CartItemService{
 
     public function getCartItems()
     {
-        $user = $this->entityManager->getRepository(User::class)->getCurrentUser();
+        $user = $this->fetchCurrentUser();
         $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
         return $cartItems;
     }
 
     public function removeAllCartItems()
     {
-        $user = $this->entityManager->getRepository(User::class)->getCurrentUser();
+        $user = $this->fetchCurrentUser();
 
         $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
         foreach ($cartItems as $cartItem)
         {
             $this->cartItemRepository->removeCartItem($cartItem);
         }
-
-        $this->entityManager->flush();
         return $cartItems;
     }
 
