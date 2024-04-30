@@ -17,8 +17,7 @@ use App\Repository\StatusRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-class OrderService{
-
+class RecordService{
     /** @var CartItemRepository $cartItemRepository */    
     private $cartItemRepository;
     /** @var RecordRepository $recordRepository */    
@@ -34,7 +33,6 @@ class OrderService{
 
     private $entityManager;
 
-
     public function __construct(EntityManagerInterface $entityManager) {
         $this->entityManager = $entityManager;
         $this->cartItemRepository = $entityManager->getRepository(CartItem::class);
@@ -45,31 +43,18 @@ class OrderService{
         $this->statusRepository = $entityManager->getRepository(Status::class);
     }
 
-    private function fetchCurrentUser()
-    {   
-        return $this->userRepository->getCurrentUser();
-    }
-
-    public function createOrder($params) 
+    public function getAllRecords()
     {
-        $status = $this->statusRepository->find(1);
-
-        if($status == null)
-        {
-            throw new \Exception("Id 1 doesn't exist! Who deleted it?!!!");
-        }
-
-        if ($status->getDescription() != "RECEIVED")
-        {
-            throw new \Exception("Somebody changed status description! Who did it!");
-        }
-
-        $data = [
-            'user' => $this->fetchCurrentUser(),
-            'status' => $status,
-        ];
-
-        $order = $this->orderRepository->createOrder($data);
+        return $this->recordRepository->findAll();
     }
 
+    public function getFeaturedRecord()
+    { 
+        $recordList = $this->recordRepository->findAll();
+        $featuredRecord = $recordList[rand(0, count($recordList) - 1)]; #just hope there's at at least one featured record lol
+        return $featuredRecord;
+    }
+    
+
+    
 }

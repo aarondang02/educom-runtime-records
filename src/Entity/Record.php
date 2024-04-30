@@ -164,7 +164,7 @@ class Record
     /**
      * @return Collection<int, Genre>
      */
-    public function getGenre(): Collection
+    public function getGenres(): Collection
     {
         return $this->genres;
     }
