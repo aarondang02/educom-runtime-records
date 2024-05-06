@@ -29,7 +29,6 @@ class CheckoutController extends AbstractController
     #[Route('/remove/{id}', name: 'app_remove_item', methods: ['POST'])]
     public function removeItem(CartItem $item): Response
     {
-
         $this->cartItemService->removeCartItem($item);
         return $this->redirectToRoute('app_checkout');
     }

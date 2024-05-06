@@ -14,7 +14,7 @@
     </head>
 
     <header class="default-font">
-        <div class="container-fluid">
+        <div class="container-fluid ">
             <div class="row">
                 <div class="col-12 top-bar">
                     <div class="row">
@@ -50,32 +50,65 @@
                                     
                                 {% endif %}
                                 <div class="top-bar-menu">  
-                                    <div class="top-bar--menu-trigger">
-                                        <img class="" src="{{ asset("images/menu.svg") }}"/>
-                                        {# <div class="dropdown">
-                                            
-                                        </div> #}
+                                    <div class="top-bar-menu-trigger">
+                                        <img id="menu-icon" src="{{ asset("images/menu.svg") }}"/>
+                                        
                                     </div>
                                 </div> 
                             </div>
-                            
-                           
-                            
-                                
-
-                            
                         </div>     
                     </div>
                 </div>
             </div>
         </div>
+        <div id="dropdown">
+            <div class="container-fluid">
+                <div class="row pb-5">
+                    <div class="col-4"></div>
+                    <div class="col-4 border-bottom border-dark border-2">
+                        <h1 class="dropdown-item bold-text">Shop</h1>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+                <div class="row pb-5">
+                    <div class="col-4"></div>
+                    <div class="col-4 border-bottom border-dark border-2">
+                        <h1 class="dropdown-item bold-text">Account</h1>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+                <div class="row pb-5">
+                    <div class="col-4"></div>
+                    <div class="col-4 border-bottom border-dark border-2">
+                        <h1 class="dropdown-item bold-text">Info</h1>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+                <div class="row pb-5">
+                    <div class="col-4"></div>
+                    <div class="col-4 border-bottom border-dark border-2">
+                        <h1 class="dropdown-item bold-text">Contact</h1>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+            </div>
+        </div> 
     </header>
+
     
+    <script src="{{ asset('js/base.js') }}"></script>
+
+
     <body class="default-font d-flex flex-column min-vh-100">
         <div class="container-fluid">
             {% block body %}
             {% endblock %}
         </div>
+        
     </body>
     <footer class="default-font mt-auto">
         <div class="container-fluid">
@@ -123,4 +156,6 @@
             </div>
         </div>
     </footer>
+
+    
 </html>

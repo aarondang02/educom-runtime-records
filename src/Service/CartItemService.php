@@ -34,16 +34,33 @@ class CartItemService{
         return $this->userRepository->getCurrentUser();
     }
 
-    public function addToCart($amount, $recordId)
+    public function addToCart(Record $record, $amount)
     {   
-
-        $params = [
-            'user' => $this->fetchCurrentUser(),
-            'record' => $this->recordRepository->find($recordId),
+        $currentUser = $this->fetchCurrentUser();
+        $item = $this->cartItemRepository->findOneBy(array('user' => $currentUser, 'record' => $record));
+        if ($item == null)
+        {
+            $params = [
+            'user' => $currentUser,
+            'record' => $record,
             'amount' => $amount
-        ];
+            ];
+            return $this->cartItemRepository->saveCartItem($params);
+        }
 
-        return $this->cartItemRepository->saveCartItem($params);
+        else 
+        {
+            $params = [
+                'id' => $item->getId(),
+                'user' => $currentUser,
+                'record' => $record,
+                'amount' => $item->getAmount() + $amount
+            ];
+            return $this->cartItemRepository->saveCartItem($params);
+        }
+
+
+        
     }
 
     public function removeCartItem(CartItem $item)

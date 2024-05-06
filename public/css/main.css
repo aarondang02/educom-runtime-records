@@ -43,7 +43,6 @@
 }
 
 .record-genres{
-    text-align: right;
     font-weight: bold;
     font-size: 20px;
 }
@@ -76,3 +75,13 @@
 .record-grid-item{
     width: 20vw;
 }
+
+.record-listing-title{
+    font-size: 30px;
+}
+
+.record-listing-artist{
+    font-size: 20px;
+    color: rgba(134, 134, 134, 0.788);
+}
+

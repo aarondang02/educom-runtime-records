@@ -4,6 +4,7 @@
     height: 50px;
     padding: 10px;
     margin-bottom: 30px;
+    z-index: 9999;
 }
 
 .login-text{
@@ -58,21 +59,29 @@
     background-color: rgb(219, 219, 219);
 }
 
-.top-bar-menu:hover .dropdown{
-    top: 0px;
+#dropdown {
+    padding-top: 7%;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0; /* Initially hidden */
+    background-color: white;
+    z-index: 9998;
+    overflow: hidden;
+    transition: height 0.5s ease, visibility 0.5s ease;; /* Smooth transition */
 }
 
-.dropdown {
-    position: fixed !important;
-    top: -20000px;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: #FDF;
-    transition: all 0.4s ease;
-    z-index: 5000 !important;
+#dropdown.open {
+    visibility: visible;
+    height: 100%; 
 }
+
+.dropdown-item {
+    font-size: 100px;
+}
+
 
 /* -------------------------------------------------------------- */
 
@@ -122,7 +131,9 @@ ul[title]::before {
     justify-content: end;
 }
 
-
+.no-scroll {
+    overflow: hidden;
+}
 
 /* -------------------------------------------------------------- */
 

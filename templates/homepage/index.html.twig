@@ -17,7 +17,7 @@
     <div class="col-3"></div>
 
     <div class="col-4 d-flex align-items-center">
-        <div>
+        <div class="w-100">
             <h3 class="bold-text featured-artist">
                 {% for artist in featuredRecord.artists %}
                     {{ artist.name }}{% if not loop.last %}, {% endif %}
@@ -28,7 +28,7 @@
 
             {% for genre in featuredRecord.genres %}
                 <div class="record-genres">
-                    <a class=" default-orange" href="">
+                    <a class="default-orange" href="">
                         {{ genre.description }}{% if not loop.last %}, {% endif %}
                     </a>
                 </div>
@@ -37,11 +37,11 @@
 
             <div class="row">
                 <div class="col-6">
-                    <a href="">
-                        <img class="featured-add-shopping-cart" src="{{ asset("images/add-shopping-cart-white.svg") }}" />
-                    </a>
+                    <form action="{{ path("add_to_cart", { "id": featuredRecord.id })}}" method="post">
+                        <input type="image" class="featured-add-shopping-cart" src="{{ asset('images/add-shopping-cart-white.svg') }}">
+                    </form>
                 </div>
-                <div class="col-6">
+                <div class="col-6 d-flex justify-content-end">
                     <button class="btn btn-primary">More Info</button>
                 </div>
             </div>
@@ -76,20 +76,30 @@
                     <div class="center-image-flex flex-column">
                         <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
 
-                        <div class="record-genres">
+                        <div class="record-genres d-flex justify-content-end">
                         {% for genre in record.genres %}
                             <a href="">
                                 {{ genre.description }}{% if not loop.last %}, {% endif %}
                             </a>
                         {% endfor %}
                         </div>
-                        <h1 class="bold-text d-inline-block text-truncate">{{ record.name }}</h1>
-                        
-                        <h2 class="bold-text d-inline-block text-truncate">
-                            {% for artist in record.artists %}
-                                {{ artist.name }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </h2>
+                        <div class="row">
+                            <div class="col-10 d-flex flex-column">
+                                
+                                <h1 class="bold-text d-inline-block text-truncate record-listing-title">{{ record.name }}</h1>
+                                
+                                <h2 class="bold-text d-inline-block text-truncate record-listing-artist">
+                                    {% for artist in record.artists %}
+                                        {{ artist.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </h2>
+                            </div>
+                            <div class="col-2 d-flex justify-content-end">
+                                <form action="{{ path("add_to_cart", { "id": record.id })}}" method="post">
+                                    <input type="image" class="featured-add-shopping-cart" src="{{ asset('images/add-shopping-cart.svg') }}">
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %} 
