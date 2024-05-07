@@ -54,6 +54,14 @@ class OrderRepository extends ServiceEntityRepository
         return $order;
     }
 
+    public function changeOrderStatus($params)
+    {
+        $order = $params['order'];
+        $order->setStatus($params['status']);
+        $this->entityManager->persist($order);
+        $this->entityManager->flush();
+        return $order;
+    }
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */

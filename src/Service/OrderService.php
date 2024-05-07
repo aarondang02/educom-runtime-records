@@ -72,4 +72,16 @@ class OrderService{
         $order = $this->orderRepository->createOrder($data);
     }
 
+    public function changeStatus($params)
+    {   
+        $data = [
+            "order" => $this->orderRepository->find($params['order_id']),
+            "status" => $this->statusRepository->find($params['status_id']),
+        ];
+         
+        return $this->orderRepository->changeOrderStatus($data);
+    }
+
+    
+
 }
