@@ -37,13 +37,13 @@ class CartItemService{
     public function addToCart(Record $record, $amount)
     {   
         $currentUser = $this->fetchCurrentUser();
-        $item = $this->cartItemRepository->findOneBy(array('user' => $currentUser, 'record' => $record));
+        $item = $this->cartItemRepository->findExistingUserCartItem($currentUser, $record);
         if ($item == null)
         {
             $params = [
-            'user' => $currentUser,
-            'record' => $record,
-            'amount' => $amount
+                'user' => $currentUser,
+                'record' => $record,
+                'amount' => $amount
             ];
             return $this->cartItemRepository->saveCartItem($params);
         }
@@ -58,9 +58,6 @@ class CartItemService{
             ];
             return $this->cartItemRepository->saveCartItem($params);
         }
-
-
-        
     }
 
     public function removeCartItem(CartItem $item)
@@ -80,16 +77,12 @@ class CartItemService{
 
     public function getCartItems()
     {
-        $user = $this->fetchCurrentUser();
-        $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
-        return $cartItems;
+        return $this->cartItemRepository->findUserCartItems($this->fetchCurrentUser());
     }
 
     public function removeAllCartItems()
     {
-        $user = $this->fetchCurrentUser();
-
-        $cartItems = $this->entityManager->getRepository(CartItem::class)->findBy(['user' => $user]);
+        $cartItems = $this->getCartItems();
         foreach ($cartItems as $cartItem)
         {
             $this->cartItemRepository->removeCartItem($cartItem);

@@ -53,6 +53,15 @@ class CartItemRepository extends ServiceEntityRepository
         $this->entityManager->flush();
     }
 
+    public function findUserCartItems($user)
+    {
+        return $this->findBy(['user' => $user]);
+    }
+
+    public function findExistingUserCartItem($user, $record)
+    {
+        return $this->findOneBy(array('user' => $user, 'record' => $record));
+    }
 //    /**
 //     * @return CartItem[] Returns an array of CartItem objects
 //     */

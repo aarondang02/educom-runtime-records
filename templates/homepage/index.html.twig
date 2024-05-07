@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset("css/main.css")}}"/>
+<link rel="stylesheet" href="{{ asset("css/main.css") }}"/>
 {% endblock %}
 
 {% block body %}
@@ -42,7 +42,9 @@
                     </form>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
-                    <button class="btn btn-primary">More Info</button>
+                    <a href="{{ path("app_recordpage", {"id": featuredRecord.id}) }}">
+                        <button class="btn btn-primary">More Info</button>
+                    </a>
                 </div>
             </div>
         </div> 

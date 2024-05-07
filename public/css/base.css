@@ -40,7 +40,7 @@
 .top-bar-cart img{
     height: 70px;
     width: 70px;
-    transition: all 0.4s ease;
+    transition: all 0.1s ease;
 }
 
 .top-bar-cart img:hover{
@@ -51,7 +51,7 @@
     height: 70px;
     width: 70px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.1s ease;
  
 }
 
@@ -82,12 +82,12 @@
     font-size: 100px;
 }
 
-.dropdown-item a{
+.dropdown-item {
     color: black;
     text-decoration: none;
 }
 
-.dropdown-item a:hover{
+.dropdown-item:hover{
     text-decoration: underline;
 }
 

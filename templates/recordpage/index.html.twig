@@ -3,15 +3,57 @@
 {% block title %}{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset("css/record.css")}}"/>
+<link rel="stylesheet" href="{{asset("css/main.css")}}"/>
 {% endblock %}
 {% block body %}
 
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-3">
-        <img class="record" src="{{ asset("record-images/queen-we-wil-rock-you")}}" ></div>
+<div class="row pt-3 pb-3">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <img class="record" src="{{ asset("record-images/queen-we-will-rock-you.jpg")}}"></div>
     </div>
-    <div class="col-3"></div>
-    <div class="col-3"></div>
+    <div class="col-4">
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="record-grid-container record-grid-template">
+            {% for record in recordList %}
+                <div class="record-grid-item">
+                    <div class="center-image-flex flex-column">
+                        <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+
+                        <div class="record-genres d-flex justify-content-end">
+                        {% for genre in record.genres %}
+                            <a href="">
+                                {{ genre.description }}{% if not loop.last %}, {% endif %}
+                            </a>
+                        {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-10 d-flex flex-column">
+                                
+                                <h1 class="bold-text d-inline-block text-truncate record-listing-title">{{ record.name }}</h1>
+                                
+                                <h2 class="bold-text d-inline-block text-truncate record-listing-artist">
+                                    {% for artist in record.artists %}
+                                        {{ artist.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </h2>
+                            </div>
+                            <div class="col-2 d-flex justify-content-end">
+                                <form action="{{ path("add_to_cart", { "id": record.id })}}" method="post">
+                                    <input type="image" class="featured-add-shopping-cart" src="{{ asset('images/add-shopping-cart.svg') }}">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
 </div>
 {% endblock %}
