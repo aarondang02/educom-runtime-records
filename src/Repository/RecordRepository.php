@@ -21,6 +21,10 @@ class RecordRepository extends ServiceEntityRepository
         parent::__construct($registry, Record::class);
     }
 
+    public function getAllRecords()
+    {
+        return $this->findAll();
+    }
     //    /**
     //     * @return Record[] Returns an array of Record objects
     //     */

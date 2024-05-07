@@ -45,12 +45,12 @@ class RecordService{
 
     public function getAllRecords()
     {
-        return $this->recordRepository->findAll();
+        return $this->recordRepository->getAllRecords();
     }
 
     public function getFeaturedRecord()
     { 
-        $recordList = $this->recordRepository->findAll();
+        $recordList = $this->recordRepository->getAllRecords();
         $featuredRecord = $recordList[rand(0, count($recordList) - 1)]; #just hope there's at at least one featured record lol
         return $featuredRecord;
     }
