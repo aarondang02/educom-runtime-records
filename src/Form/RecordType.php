@@ -25,11 +25,11 @@ class RecordType extends AbstractType
             ->add('available_stock')
             ->add('reserved_stock')
             ->add('sold')
-            ->add('genre', EntityType::class, [
+            ->add('genres', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'description',
                 'multiple' => true,
-                'required' => false,
+                'required' => false,            
             ])
             ->add('artists', EntityType::class, [
                 'class' => Artist::class,

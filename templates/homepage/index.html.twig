@@ -24,7 +24,10 @@
                 {% endfor %}
             </h3>
             <h1 class="bold-text default-white featured-title">{{ featuredRecord.name }}</h1>
-            <p class="default-white featured-description"> {{ featuredRecord.description }}</p>
+            <div class="">
+                <p class="default-white featured-description"> {{ featuredRecord.description }}</p>
+            </div>
+            
 
             {% for genre in featuredRecord.genres %}
                 <div class="record-genres">

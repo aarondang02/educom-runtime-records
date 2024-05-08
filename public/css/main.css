@@ -21,7 +21,10 @@
 
 .featured-description{
     font-size: 22px;
+    max-height: 250px;
+    overflow: hidden;
 }
+ 
 
 .featured-add-shopping-cart{
     width: 50px;
