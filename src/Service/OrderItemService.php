@@ -18,7 +18,6 @@ use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class OrderService{
-
     /** @var CartItemRepository $cartItemRepository */    
     private $cartItemRepository;
     /** @var RecordRepository $recordRepository */    
@@ -50,58 +49,18 @@ class OrderService{
         return $this->userRepository->getCurrentUser();
     }
 
-    private function generateOrderNumber()
+    public function toOrderItems(Order $order)
     {
-        $lastOrder = $this->orderItemRepository->getLastOrder();
-        if ($lastOrder) 
+        $cartItems = $this->cartItemRepository->findUserCartItems($this->fetchCurrentUser());
+        foreach($cartItems as $cartItem)
         {
-            $lastOrderNumber = $lastOrder->getOrderNumber();
-            $lastOrderNumber = substr($lastOrderNumber, 3);
-            $lastOrderNumber = (int) $lastOrderNumber;
-            $lastOrderNumber++;
-        } 
-        else 
-        {
-            $lastOrderNumber = 1;
+            $data = [
+                'order' => $order,
+                'record' => $cartItem->getRecord(),
+                'amount' => $cartItem->getAmount(),
+            ];
+            $this->orderItemRepository->saveOrderItem($data);
+            $this->cartItemRepository->removeCartItem($cartItem);
         }
-        $orderNumber = 'ORD'. str_pad($lastOrderNumber, 13, '0', STR_PAD_LEFT);
-        return $orderNumber;
     }
-
-    public function createNewOrder() 
-    {
-        $status = $this->statusRepository->findStatus(1); #automatically get "RECEIVED" status
-
-        #safety checks
-        if($status == null)
-        {
-            throw new \Exception("Id 1 doesn't exist! Who deleted it?!!!");
-        }
-        if ($status->getDescription() != "RECEIVED")
-        {
-            throw new \Exception("Somebody changed status description! Who did it?!!!!!!");
-        }
-
-        $data = [
-            'user' => $this->fetchCurrentUser(),
-            'status' => $status,
-            'orderNumber' => $this->generateOrderNumber(),
-        ];
-
-        $order = $this->orderRepository->saveOrder($data);
-        return $order;
-    }
-
-    public function changeStatus($params)
-    {   
-        $data = [
-            "order" => $this->orderRepository->findOrder($params['order_id']),
-            "status" => $this->statusRepository->findStatus($params['status_id']),
-        ];
-         
-        return $this->orderRepository->changeOrderStatus($data);
-    }
-
-    
-
 }

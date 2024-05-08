@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\OrderItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @extends ServiceEntityRepository<OrderItem>
@@ -16,11 +17,30 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderItemRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $entityManager;
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, OrderItem::class);
+        $this->entityManager = $entityManager;
     }
 
+    public function saveOrderItem($params)
+    {   
+        if(isset($params["id"]) && $params["id"] != "")
+        {
+            $orderItem = $this->find($params["id"]);
+        }
+        else 
+        {
+            $orderItem = new OrderItem();
+        }
+        $orderItem->setOrder($params['order']);
+        $orderItem->setRecord($params['record']);
+        $orderItem->setAmount($params['amount']);
+        $this->entityManager->persist($orderItem);
+        $this->entityManager->flush();
+        return $orderItem;
+    }
     //    /**
     //     * @return OrderItem[] Returns an array of OrderItem objects
     //     */

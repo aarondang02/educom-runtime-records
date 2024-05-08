@@ -25,30 +25,21 @@ class OrderRepository extends ServiceEntityRepository
         $this->entityManager = $entityManager;
     }
 
-    private function generateOrderNumber()
+    public function saveOrder($params)
     {
-        $lastOrder = $this->entityManager->getRepository(Order::class)->findOneBy([], ['id' => 'DESC']);
-        if ($lastOrder) 
+        if(isset($params["id"]) && $params["id"] != "")
         {
-            $lastOrderNumber = $lastOrder->getOrderNumber();
-            $lastOrderNumber = substr($lastOrderNumber, 3);
-            $lastOrderNumber = (int) $lastOrderNumber;
-            $lastOrderNumber++;
-        } 
+            $order = $this->find($params["id"]);
+        }
         else 
         {
-            $lastOrderNumber = 1;
+            $order = new Order();
         }
-        $orderNumber = 'ORD'. str_pad($lastOrderNumber, 13, '0', STR_PAD_LEFT);
-        return $orderNumber;
-    }
 
-    public function createOrder($params)
-    {
-        $order = new Order();
         $order->setUser($params['user']);
         $order->setStatus($params['status']);
-        $order->setOrderNumber($this->generateOrderNumber());
+        $order->setOrderNumber($params['orderNumber']);
+        $order->setOrderDate(new \DateTimeImmutable());
         $this->entityManager->persist($order);
         $this->entityManager->flush();
         return $order;
@@ -61,6 +52,16 @@ class OrderRepository extends ServiceEntityRepository
         $this->entityManager->persist($order);
         $this->entityManager->flush();
         return $order;
+    }
+
+    public function findOrder($id)
+    {
+        return $this->find($id);
+    }
+
+    public function findLastOrder()
+    {
+        return $this->findOneBy([], ['id' => 'DESC']);
     }
     //    /**
     //     * @return Order[] Returns an array of Order objects
