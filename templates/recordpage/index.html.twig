@@ -7,18 +7,33 @@
 {% endblock %}
 {% block body %}
 
-<div class="row pt-3 pb-3">
+<div class="row mt-5 mb-5">
     <div class="col-2"></div>
     <div class="col-4">
-        <img class="record" src="{{ asset("record-images/queen-we-will-rock-you.jpg")}}"></div>
+        <img class="record record-image" src="{{ asset("record-images/queen-we-will-rock-you.jpg")}}"></img>
     </div>
     <div class="col-4">
-
+        <h1 class="bold-text text-truncate record-title">{{ record.name }}</h1>
+        <h2 class="bold-text text-truncate record-listing-artist">
+            {% for artist in record.artists %}
+                {{ artist.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </h2>
+        <div class="record-genres text-truncate">
+            {% for genre in record.genres %}
+                <a href="">
+                    {{ genre.description }}{% if not loop.last %}, {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+        <div>
+            <p>{{ record.description }}</p>
+        </div>
     </div>
     <div class="col-2"></div>
 </div>
 
-<div class="row">
+<div class="row mt-5">
     <div class="col-12">
         <div class="record-grid-container record-grid-template">
             {% for record in recordList %}

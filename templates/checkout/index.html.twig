@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset("css/checkout.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/main.css") }}">
 {% endblock %}
 
 {% block body %}
@@ -23,22 +24,22 @@
             <div class="row pb-3 mb-3 border-bottom border-dark border-3">
 
                 <div class="col-3 d-flex align-items-center justify-content-center">
-                    <img class="checkout-image" src="{{ asset('record-images/beetles-abbey-road.webp') }}">
+                    <img class="checkout-image record-image" src="{{ asset('record-images/beetles-abbey-road.webp') }}">
                 </div>
 
                 <div class="col-5 d-flex justify-content-center flex-column">
         
                     <div class="row">
                         <div class="col-12">
-                            <a href="">
-                                <h1 class="bold-text checkout-title">{{ cartItem.record.name }}</h1>
+                            <a class="bold-text checkout-title" href="{{ path("app_recordpage", {"id": cartItem.record.id}) }}">
+                                {{ cartItem.record.name }}
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             {% for artist in cartItem.record.artists %}
-                            <a class="bold-text checkout-author" href="">{{ artist.name }}</a>
+                                <a class="bold-text checkout-author" href="">{{ artist.name }}</a>
                             {% endfor %}
                         </div>
                     </div>   

@@ -22,10 +22,28 @@
 .checkout-title {
     color: #E84E0F;
     font-size: 50px;
+    text-decoration: none;
+}
+
+.checkout-title:hover{
+    filter: saturate(0.5);
+}
+
+.checkout-title:active{
+    text-decoration: none;
+}
+
+.checkout-title:visited{
+    text-decoration: none;
 }
 
 .checkout-author{
     color: rgba(134, 131, 131, 0.83);
+    text-decoration: none;
+}
+
+.checkout-author:hover {
+    text-decoration: underline;
 }
 
 .remove-from-cart-icon{

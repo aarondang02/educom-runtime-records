@@ -79,6 +79,7 @@
     width: 20vw;
 }
 
+
 .record-listing-title{
     font-size: 30px;
 }
@@ -88,3 +89,6 @@
     color: rgba(134, 134, 134, 0.788);
 }
 
+.record-image{
+    border-radius: 10px;
+}
