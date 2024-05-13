@@ -59,9 +59,19 @@ class OrderRepository extends ServiceEntityRepository
         return $this->find($id);
     }
 
-    public function findLastOrder()
+    public function findUserOrders($user)
+    {
+        return $this->findBy(['user' => $user]);
+    }
+
+    public function getLastOrder()
     {
         return $this->findOneBy([], ['id' => 'DESC']);
+    }
+
+    public function findByOrderNumber($orderNumber)
+    {
+        return $this->findOneBy(['order_number' => $orderNumber]);
     }
     //    /**
     //     * @return Order[] Returns an array of Order objects

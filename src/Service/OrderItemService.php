@@ -17,7 +17,7 @@ use App\Repository\StatusRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-class OrderService{
+class OrderItemService{
     /** @var CartItemRepository $cartItemRepository */    
     private $cartItemRepository;
     /** @var RecordRepository $recordRepository */    
@@ -64,3 +64,4 @@ class OrderService{
         }
     }
 }
+?>

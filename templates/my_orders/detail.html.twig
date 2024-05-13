@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row pt-3">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8">
+        <h1 class="bold-text">Order: {{ order.ordernumber }}</h1>
+        <h2 class="bold-text">Status: {{ order.status.description }}</h2>
+    </div>
+
+    <div class="col-2">
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8">
+        <table class="table table-striped"> 
+            <h1 class="bold-text">Details</h1>
+            <thead>
+                <tr>
+                    <th scope="col">Record</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Price/pc</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set totalPrice = 0 %} 
+                {% for orderItem in order.orderItems %}
+                    {% set totalRecordPrice = 0 %}
+                    {% set totalRecordPrice = totalRecordPrice + (orderItem.record.price * orderItem.amount / 100) %}
+                    {% set totalPrice = totalPrice + totalRecordPrice %}
+                    <tr>
+                        <td>{{ orderItem.record.name }}</td>
+                        <td>{{ orderItem.amount }}</td>
+                        <td>€{{ orderItem.record.price / 100 }}</td>
+                        <td>€{{ totalRecordPrice }}</td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <th>Total</th>
+                    <td></td>
+                    <td></td>
+                    <td>€{{ totalPrice }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-2">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8">
+        <a href="{{ path("app_my_orders") }}">
+            ← back to my orders
+        </a>
+    </div>
+
+    <div class="col-2">
+    </div>
+</div>
+{% endblock %}

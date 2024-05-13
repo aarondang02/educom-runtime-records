@@ -52,7 +52,7 @@ class OrderService{
 
     private function generateOrderNumber()
     {
-        $lastOrder = $this->orderItemRepository->getLastOrder();
+        $lastOrder = $this->orderRepository->getLastOrder();
         if ($lastOrder) 
         {
             $lastOrderNumber = $lastOrder->getOrderNumber();
@@ -92,6 +92,11 @@ class OrderService{
         return $order;
     }
 
+    public function getOrders()
+    {
+        return $this->orderRepository->findUserOrders($this->fetchCurrentUser());
+    }
+
     public function changeStatus($params)
     {   
         $data = [
@@ -102,6 +107,9 @@ class OrderService{
         return $this->orderRepository->changeOrderStatus($data);
     }
 
-    
+    public function findByOrderNumber($orderNumber)
+    {
+        return $this->orderRepository->findByOrderNumber($orderNumber);
+    }
 
 }

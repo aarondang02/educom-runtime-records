@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row pt-3">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8">
+        <h1 class="bold-text">My Order(s)</h1>
+    </div>
+
+    <div class="col-2">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Order number</th>
+                    <th scope="col">Num items</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orderList %}
+                    {% set orderItemsCount = order.orderItems|length %}
+                    {% set totalPrice = 0 %}
+                    {% for orderItem in order.orderItems %}
+                        {% set totalPrice = totalPrice + (orderItem.record.price * orderItem.amount / 100) %}
+                    {% endfor %}
+
+                    <tr>
+                        <td>
+                            <a href="{{ path("app_order_detail", {"orderNumber": order.ordernumber}) }}">
+                                {{ order.ordernumber }}
+                            </a>
+                        </td>
+                        <td>{{ orderItemsCount }}</td>
+                        <td>€{{ totalPrice }}</td>
+                        <td>{{ order.status.description }}</td>
+                        <td>{{ order.orderDate|date("d-m-Y") }}</td>	
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-2">
+    </div>
+</div>
+{% endblock %}
