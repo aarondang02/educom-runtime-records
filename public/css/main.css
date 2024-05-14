@@ -82,6 +82,11 @@
 
 .record-listing-title{
     font-size: 30px;
+    color: black;
+}
+
+.record-listing-title:hover {
+    color: rgb(65, 64, 64);
 }
 
 .record-listing-artist{
@@ -91,4 +96,5 @@
 
 .record-image{
     border-radius: 10px;
+    max-width: 100%;
 }

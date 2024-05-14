@@ -21,6 +21,7 @@ class MyOrdersController extends AbstractController
     #[Route('', name: 'app_my_orders')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         return $this->render('my_orders/index.html.twig', [
             "orderList" => $this->orderService->getOrders(),
         ]);
@@ -29,8 +30,12 @@ class MyOrdersController extends AbstractController
     #[Route('/detail/{orderNumber}', name: 'app_order_detail')]
     public function detail($orderNumber): Response
     {   
+        $order = $this->orderService->findByOrderNumber($orderNumber);
+        if ($order->getUser() !== $this->getUser()){
+            throw $this->createAccessDeniedException();
+        }
         return $this->render('my_orders/detail.html.twig', [
-            "order" => $this->orderService->findByOrderNumber($orderNumber),
+            "order" => $order,
         ]);
     }
 }

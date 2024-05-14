@@ -24,7 +24,7 @@
                 {% endfor %}
             </h3>
             <h1 class="bold-text default-white featured-title">{{ featuredRecord.name }}</h1>
-            <div class="">
+            <div>
                 <p class="default-white featured-description"> {{ featuredRecord.description }}</p>
             </div>
             
@@ -55,7 +55,6 @@
     <div class="col-4 d-flex align-items-center justify-content-start">
         <img class="featured-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
     </div>
-
     <div class="col-1"></div>
 </div>
 
@@ -68,7 +67,6 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-        
     </div>
     <div class="col-3"></div>
 </div>
@@ -79,8 +77,11 @@
             {% for record in recordList %}
                 <div class="record-grid-item">
                     <div class="center-image-flex flex-column">
-                        <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
-
+        
+                        <a href="{{  path("app_recordpage", {"id": record.id}) }}">
+                            <img class="record-image" src="{{ asset("record-images/beetles-abbey-road.webp")}}"/>
+                        </a>
+                        
                         <div class="record-genres d-flex justify-content-end">
                         {% for genre in record.genres %}
                             <a href="">
@@ -90,9 +91,9 @@
                         </div>
                         <div class="row">
                             <div class="col-10 d-flex flex-column">
-                                
-                                <h1 class="bold-text d-inline-block text-truncate record-listing-title">{{ record.name }}</h1>
-                                
+                                <a class="record-listing-title" href="{{  path("app_recordpage", {"id": record.id}) }}">
+                                    <h1 class="bold-text d-inline-block text-truncate">{{ record.name }}</h1>
+                                </a>
                                 <h2 class="bold-text d-inline-block text-truncate record-listing-artist">
                                     {% for artist in record.artists %}
                                         {{ artist.name }}{% if not loop.last %}, {% endif %}
